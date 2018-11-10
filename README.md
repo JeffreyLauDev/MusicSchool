@@ -18,5 +18,5 @@ Authentication, login, register, book music class, hire music instrument
 ## Authors
 
 * **Jeffrey Lau** - *Developer* - [JeffreyLauDev](https://github.com/abc007007007)
-* **Eric Lee** - *Developer* - [Ericlkl](https://github.com/Ericlkl/GeoGo)
+* **BrysonH98** - *Developer* - [BrysonH98](https://github.com/BrysonH98)
 
