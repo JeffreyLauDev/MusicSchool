@@ -1,0 +1,190 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/owl.carousel.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/owl.theme.default.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/particles.css" %}">
+    <link rel='stylesheet' href="{% static 'css/fullcalendar.css' %}" />
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed:800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:200,300,400,600,700,800" rel="stylesheet">
+    <title>Music school</title>
+
+</head>
+
+<body class="pannel bg-grey">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white navbar-border">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'profile:index' %}">
+                <img src="{% static "/img/music-icon.png" %}" width="30" height="30" class="d-inline-block align-top" alt=""> Music School
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'profile:index' %}">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item seperat-line pr-md-3 active">
+                        <a class="nav-link" href="{% url 'profile:search' %}">Course
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item dropdown pl-md-3">
+
+                        <a class="nav-link dropdown-toggle " href="./pannel-notification.html" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Personal
+                        </a>
+                        <div class="dropdown-menu profile-drop" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'profile:settings' %}">Setting</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'profile:index' %}">Log out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="bannner">
+            <div id="particles-js" class="hero bg-parallex overlay " style="height: 100%;background: url('{% static "/img/microphone-1209816_1280-green.jpg" %}');" >
+                <div class="middle-banner">
+                        <h2 class="display-5  font-weight-bold c-w">Join Class</h2>
+                </div>
+
+    
+            
+            </div>
+
+
+
+    <section class="container-2 my-section-3 p-md-0  mt-3">
+
+        <h3 class="my-5">
+            Your Available Courses:
+        </h3>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-monday" role="tabpanel" aria-labelledby="nav-monday-tab">
+
+                <div class="row bg-greenblue mx-0 rounded">
+                    <div class="col-2  d-flex align-items-center ">
+
+                        <p class="mr-auto my-auto p-3 f-white text-bold">Date</p>
+
+                    </div>
+                    <div class="col-6  d-flex align-items-center ">
+
+                        <p class="mr-auto my-auto p-3 f-white text-bold">Information</p>
+
+                    </div>
+                    <div class="col-2 d-flex align-items-center ">
+                        <p class="mr-auto my-auto p-3 f-white text-bold">Venue</p>
+                    </div>
+                    <div class="col-2 d-flex align-items-center ">
+                        <p class="mr-auto my-auto p-3 f-white text-bold">Operation</p>
+
+                    </div>
+                </div>
+
+                {% for class in classes %}
+                <a class="list-group-item list-group-item-action ">
+                    <div class="row">
+                        <div class="col-2 text-truncate">
+                            <div class="d-flex align-items-center h-100 ">
+                                <h4 class="mx-auto my-0">{{ class.class_time|time }}
+
+                                </h4>
+
+                            </div>
+
+                        </div>
+                        <div class="col-6">
+                            <p class="c-2 mb-1">
+                                {{ class.class_time|date }}
+                            </p>
+                            <h6 class="mb-1 text-bold">
+                                {{ class.get_instrument_display }} lesson.
+                            </h6>
+                            <p class="c-2 mb-0">
+                                {{ user.first_name }} {{ user.last_name }}
+                            </p>
+
+                        </div>
+                        <div class="col-2 d-flex align-items-center ">
+                            <p class="mx-auto my-auto">Room {{ class.room }}</p>
+                        </div>
+                        <div class="col-2 d-flex align-items-center ">
+                            <div class="row mx-2">
+                                <form action="{% url 'profile:search' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="class_id" value="{{ class.id }}">
+                                    <button type="submit" class="btn btn-info btn-lg mb-2 btn-sm" style=" width :100%; " data-toggle="modal" data-target="#hireInstrumentModal-0">
+                                        Join This Class
+                                    </button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </a>
+                {% endfor %}
+
+            </div>
+            <div class="tab-pane fade" id="nav-saturday" role="tabpanel" aria-labelledby="nav-saturday-tab"><div class="row bg-greenblue mx-0 rounded">
+                    <div class="col-2  d-flex align-items-center ">
+
+                        <p class="mr-auto my-auto p-3 f-white text-bold">Date</p>
+
+                    </div>
+                    <div class="col-6  d-flex align-items-center ">
+
+                        <p class="mr-auto my-auto p-3 f-white text-bold">Information</p>
+
+                    </div>
+                    <div class="col-2 d-flex align-items-center ">
+                        <p class="mr-auto my-auto p-3 f-white text-bold">Venue</p>
+                    </div>
+                    <div class="col-2 d-flex align-items-center ">
+                        <p class="mr-auto my-auto p-3 f-white text-bold">Operation</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/popper.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/owl.carousel.min.js" %}"></script>
+    <script src="{% url 'profile:student_custom' user.student.id %}"></script>
+    <script src="{% static 'js/moment.js' %}"></script>
+    <script src="{% static 'js/fullcalendar.js' %}"></script>
+    <script src="{% static "js/particles.js" %}"></script>
+    <script src="{% static "js/app.js" %}"></script>
+    <script src="{% static "js/stats.js" %}"></script>
+    
+
+</body>
+
+</html>

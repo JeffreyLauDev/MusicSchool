@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/owl.carousel.min.css" %}" >
+    <link rel="stylesheet" href="{% static "css/owl.theme.default.min.css" %}">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed:800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:200,300,400,600,700,800" rel="stylesheet">
+    <title>Music school</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand"href="{% url 'home:home' %}">
+                <img src="{% static "/img/music-icon.png" %}" width="30" height="30" class="d-inline-block align-top" alt=""> Music School
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item seperat-line pr-md-3 ">
+                        <a class="nav-link" href="{% url 'home:home' %}">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link pl-md-4" href="{% url 'authentication:login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'authentication:signup' %}">Sign up</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="section my-section-2">
+        <div class="col-md-6 mx-auto">
+                <form action="" method="post">
+                    <div class="text-left">
+                       
+                        <h3 class="font-weight-bold mb-4 text-left">Sign up</h3>
+                        <h5 class="text-gray-soft text-regular mb-4">Please fill in this form to create an account.
+                        </h5>
+                        <hr>
+                        <div class="django-form signup">
+                                {% csrf_token %}
+                                {{ form }}
+                                {{ form2.as_p }}
+                        </div>
+                        <div class="form-check pb-2">
+                                <input class="form-check-input" type="checkbox" id="signUpCheck" checked required>
+                                <label class="form-check-label form_agreement" for="signUpCheck">
+                                    <h5 class="">Agree to share this information with MusicOnline?
+                                        <span class="formRequired">*</span>
+                                    </h5>
+                                </label>
+                            </div>
+                    
+                        <button type="submit" class="btn btn-info btn-large">Sign up</button>
+                        <hr>
+                        <h5>Already a member? 
+                                <a href="{% url 'authentication:login' %}">Login</a> now</h5>
+                    </div>
+ 
+                </form>
+         
+        </div>
+    </div>
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/popper.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/owl.carousel.min.js" %}"></script>
+    <script src="{% static "js/jquery.easeScroll.js" %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,317 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/owl.carousel.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/owl.theme.default.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/bootstrap-tagsinput.css" %}">
+    <link rel='stylesheet' href="{% static 'css/fullcalendar.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/particles.css" %}">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed:800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:200,300,400,600,700,800" rel="stylesheet">
+    <title>Music school</title>
+
+</head>
+
+<body class="pannel bg-grey">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white navbar-border">
+        <div class="container">
+            <a class="navbar-brand" href="/pannel-home.html">
+                <img src="{% static "/img/music-icon.png" %}" width="30" height="30" class="d-inline-block align-top" alt=""> Music School
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item active">
+
+                        <a class="nav-link" href="{% url 'profile:teacher_index'  %}">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item seperat-line pr-md-3">
+                        <a class="nav-link" href="{% url 'profile:teacher_schedule'  %}">Schedule
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item dropdown ">
+
+                        <a class="nav-link dropdown-toggle " href="./pannel-notification.html" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Personal
+                        </a>
+                        <div class="dropdown-menu profile-drop" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item " href="{% url 'profile:teacher_settings'  %}">Setting</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'authentication:logout'%}">Log out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bannner">
+            <div id="particles-js" class="hero bg-parallex overlay " style="height: 100%;background: url('{% static "/img/microphone-1209816_1280-green.jpg" %}');" >
+                <div class="middle-banner">
+                        <h2 class="display-5  font-weight-bold c-w">Welcome back {{ user.first_name }}</h2>
+                </div>
+
+    
+    </div>
+
+    <div class="nav-1 d-none">
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark container-2 mx-auto scroll-fix p-md-2 p-1" id="myHeader">
+            <form class="form-inline my-md-2 my-0 my-lg-0" style="width:  100%;">
+                <input class="form-control mr-sm-2 br-3px" style="width:  calc(100% - 37px);line-height: 1.5;" type="search" placeholder="Search"
+                    aria-label="Search">
+                <a href="">
+                    <i class="fa fa-search text-white ml-1  ml-2 ml-md-0 mr-2 border-radius" aria-hidden="true"></i>
+                </a>
+            </form>
+        </nav>
+
+    </div>
+
+    <section class="container-2 my-section-3 p-md-0  mt-3">
+
+
+        <div class="row mr-15-none  flex-reverse mt-5">
+            <div class="col-md-9 pr-15-none">
+                <div class="d-flex">
+                    <h4 class="font-weight-bold mb-4 text-left ">Schedule</h4>
+                    <div class="ml-auto p-2">
+                            <button type="submit" class="btn btn-info btn-lg mb-2 btn-sm" style=" width :100%; " data-toggle="modal" data-target="#createClassModal">
+                                Create Class
+                            </button>
+                    </div>
+                </div>
+
+                <div class="tab-content mb-4 " id="settingTabContent">
+                    <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+                        <div class="list-group " id="general" role="tabpanel" aria-labelledby="general-tab">
+
+                            <div class="row bg-greenblue mx-0 rounded">
+                                <div class="col-2  d-flex align-items-center text-bold">
+
+                                    <p class="mr-auto my-auto p-3 f-white">Time</p>
+
+                                </div>
+                                <div class="col-5  d-flex align-items-center text-bold">
+
+                                    <p class="mr-auto my-auto p-3 f-white">Information</p>
+
+                                </div>
+                                <div class="col-2 d-flex align-items-center text-bold">
+                                    <p class="mr-auto my-auto p-3 f-white">Venue</p>
+                                </div>
+                                <div class="col-2 d-flex align-items-center text-bold">
+                                    <p class="mr-auto my-auto p-3 f-white">Operation</p>
+
+                                </div>
+                            </div>
+
+                            {% if lessons|length > 0 %}
+                                {% for class in lessons %}
+                            <a class="list-group-item list-group-item-action ">
+                                <div class="row">
+                                    <div class="col-2 text-truncate">
+                                        <div class="d-flex align-items-center h-100 ">
+                                            <h4 class="mx-auto my-0">{{ class.class_time|time }}</h4>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-5">
+                                        <p class="c-2 mb-1">
+                                            {{ class.class_time|date }}
+                                        </p>
+                                        <h6 class="mb-1 text-bold">
+                                            {{ class.get_instrument_display }} lesson.
+                                        </h6>
+                                        <p class="c-2 mb-0">
+                                            {{ class.student.user.first_name }} {{ class.student.user.last_name }}
+                                        </p>
+
+                                    </div>
+                                    <div class="col-2 d-flex align-items-center ">
+                                        <p class="mx-auto my-auto">Room {{ class.room }}</p>
+                                    </div>
+                                    <div class="col-2 d-flex align-items-center ">
+                                        <div class="row mx-2">
+                                            <button type="button" class="btn btn-info btn-lg mb-2 btn-sm" style=" width :100%; " data-toggle="modal" data-target="#editClassModal-{{ forloop.counter }}">
+                                                Edit Class
+                                            </button>
+                                            <form action="{% url 'profile:cancel_class' class.id %}" method="POST">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-warning btn-lg btn-sm" style=" width :100%; "> Cancel class
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </a>
+                           {% endfor %}
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            <div class="col-md-3 pl-md-0 pr-15-none mb-sm-0 mb-3">
+
+
+                <div id='studentSchedule' class=" smallCalendar mt-md-4 mb-2"></div>
+
+
+            </div>
+
+
+
+        </div>
+
+        {% else %}
+        <h5>You aren't currently enrolled in any classes, click here to search</h5>
+        {% endif %}
+
+    </section>
+
+    {% for class in lessons %}
+
+    <div class="modal fade" id="editClassModal-{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="editClassModal{{ forloop.counter }}Label" aria-hidden="true">
+        <div class="modal-dialog mw-50" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title font-weight-bold text-left" id="editClassModal{{ forloop.counter }}Label">Edit Class</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12 mx-auto">
+                        <div class="text-left">
+
+
+                            <form action="{% url 'profile:teacher_index' %}" method="POST" class="django-form">
+                                {% csrf_token %}
+                                <input type="hidden" name="class_id" value="{{ class.id }}">
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        {{ classEdit.as_p }}
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-info btn-large" name="edit">Submit</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+
+    <div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="scheduleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header d-flex align-items-center">
+
+                    <h6 class="modal-title" id="eventTitle">Modal title</h6>
+
+
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="eventBody">
+                    <h5 id="eventTime"></h5>
+                    <p id="description"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info">ok</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel class</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="createClassModal" tabindex="-1" role="dialog" aria-labelledby="generalEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog mw-50" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title font-weight-bold text-left" id="generalEditModalLabel">Create Class</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12 mx-auto">
+                        <div class="text-left">
+
+
+                            <form action="{% url 'profile:teacher_index' %}" method="post" class="django-form">
+                                {% csrf_token %}
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        {{ classCreation.as_p }}
+                                    </div>
+                                </div>
+
+<<<<<<< HEAD
+                                <button type="submit" class="btn btn-info btn-large">Submit</button>
+                                <button type="submit" class="btn btn-primary btn-large" name="create">Submit</button>
+=======
+                                <button type="submit" class="btn btn-info btn-large" name="create">Submit</button>
+>>>>>>> 33dd6346b07bca2c31c5d1efb0400fb9276083d5
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/popper.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/owl.carousel.min.js" %}"></script>
+    <script src="{% url 'profile:student_custom' user.student.id %}"></script>
+    <script src="{% static 'js/moment.js' %}"></script>
+    <script src="{% static 'js/fullcalendar.js' %}"></script>
+    <script src="{% static "js/particles.js" %}"></script>
+    <script src="{% static "js/app.js" %}"></script>
+    <script src="{% static "js/stats.js" %}"></script>
+    
+
+</body>
+
+</html>

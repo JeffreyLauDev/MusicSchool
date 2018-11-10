@@ -1,0 +1,265 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/owl.carousel.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/owl.theme.default.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/bootstrap-tagsinput.css" %}">
+
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed:800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:200,300,400,600,700,800" rel="stylesheet">
+    <title>Music school</title>
+
+</head>
+
+<body class="pannel bg-grey">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white navbar-border">
+        <div class="container">
+            <a class="navbar-brand" href="/pannel-home.html">
+                <img src="{% static "/img/music-icon.png" %}" width="30" height="30" class="d-inline-block align-top" alt=""> Music School
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item seperat-line pr-md-3 active">
+
+                        <a class="nav-link" href="{% url 'profile:teacher_index'  %}">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item dropdown ">
+
+                        <a class="nav-link dropdown-toggle active" href="./pannel-notification.html" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Personal
+                        </a>
+                        <div class="dropdown-menu profile-drop" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item " href="{% url 'profile:settings'  %}">Setting</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'authentication:logout'%}">Log out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="container-2 my-section-3 p-md-0 mt-3">
+        <div class="row">
+            <div class="col-sm-3 pannel-choice-cate mb-sm-0 mb-3">
+                <div class="setting-profile">
+                    <ul class="nav flex-column " id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-lik active list-group-item list-group-item-action" id="home-tab" data-toggle="tab" href="#general" role="tab"
+                                aria-controls="general" aria-selected="true">General</a>
+                            <a class="nav-lnk list-group-item list-group-item-action" id="profile-tab" data-toggle="tab" href="#classPreference" role="tab"
+                                aria-controls="classPreference" aria-selected="false">Class Preference</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="profile-card">
+                    <div class="tab-content" id="settingTabContent">
+                        <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h3 class="font-weight-bold mt-2 text-inline">
+                                        General
+                                    </h3>
+                                </li>
+                                <li class="list-inline-item ml-auto">
+                                        <a href="" class="ml-2" data-toggle="modal" data-target="#generalEditModal"> Edit </a>
+                                    </li>
+                            </ul>
+                            <hr>
+                            <div class="row Setting-data-row">
+                                <div class="col-3">
+                                    <p class="font-weight-bold ">
+                                        Name:
+                                    </p>
+                                </div>
+                                <div class="col-9">
+                                    <p class="text-truncate" >{{ user.first_name }} {{ user.teacher.last_name }}
+
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row Setting-data-row">
+                                <div class="col-3">
+                                    <p class="font-weight-bold ">
+                                        Email:
+                                    </p>
+                                </div>
+                                <div class="col-9">
+                                    <p class="text-truncate">{{ user.email }}
+
+                                    </p>
+                                </div>
+                            </div>
+                            <!--
+                            <div class="row Setting-data-row">
+                                <div class="col-3">
+                                    <p class="font-weight-bold ">
+                                        Password:
+                                    </p>
+                                </div>
+                                <div class="col-9">
+                                    <p class="text-truncate">{{ password }}
+
+                                    </p>
+                                </div>
+                            </div>
+                            -->
+                            <div class="row Setting-data-row">
+                                <div class="col-3">
+                                    <p class="font-weight-bold ">
+                                        Date of Birth
+                                    </p>
+                                </div>
+                                <div class="col-9">
+                                    <p class="text-truncate">{{ user.teacher.dob }}
+
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row Setting-data-row">
+                                <div class="col-3">
+                                    <p class="font-weight-bold ">
+                                        Address:
+                                    </p>
+                                </div>
+                                <div class="col-9">
+                                    <p class="text-truncate">{{ user.teacher.street_number }} {{ user.teacher.street_name }}, {{user.teacher.postcode }}, {{ user.teacher.city }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row Setting-data-row">
+                                <div class="col-3">
+                                    <p class="font-weight-bold ">
+                                        Gender:
+                                    </p>
+                                </div>
+                                <div class="col-9">
+                                    <p class="text-truncate">{{ user.teacher.get_gender_display }}
+
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row Setting-data-row">
+                                <div class="col-3">
+                                    <p class="font-weight-bold ">
+                                        Mobile Phone:
+                                    </p>
+                                </div>
+                                <div class="col-9">
+                                    <p class="text-truncate">{{ user.teacher.phone }}
+
+                                    </p>
+                                </div>
+                            </div>
+
+               
+                        </div>
+                        <div class="tab-pane fade show " id="classPreference" role="tabpanel" aria-labelledby="classPreference-tab">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h3 class="font-weight-bold mt-2 text-inline">
+                                        Class Preference
+                                    </h3>
+                                </li>
+            
+
+                            </ul>
+                            <hr>
+                            <p class="mb-2">
+                                Add your interest or preference to the list
+                            </p>
+                            <form action="">
+                           <div id="class-preference-ready">
+                            <input type="text"  value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" /> 
+                           </div>
+                             
+                           <!--h4 class="mt-4 text-bold">
+                            Add Preference
+                        </h4>
+                        <hr>
+                        <div id="add-preference">
+                            <input type="text"  value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" /> 
+                        </div-->
+                        <hr>
+                            <button type="submit" class="btn btn-info" >Save</button>
+                          
+                            <code data-language="javascript" class="rainbow"></code>
+                        </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <div class="modal fade" id="generalEditModal" tabindex="-1" role="dialog" aria-labelledby="generalEditModalLabel" aria-hidden="true">
+            <div class="modal-dialog mw-50" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h6 class="modal-title font-weight-bold text-left" id="generalEditModalLabel">Update Information</h6>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                        <div class="col-md-12 mx-auto">
+                                <div class="text-left">
+                                        <form action="{% url 'profile:teacher_settings'  %}" method="post" class="django-form">
+
+                                        {% csrf_token %}
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                {{ userSetting.as_p }}
+                                                {{ teacherSetting.as_p }}
+                                            </div>
+                                        </div>
+
+
+                                        <button type="submit" class="btn btn-info btn-large" >Submit</button>
+
+                                    </form>
+                                </div>
+                        </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/popper.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/owl.carousel.min.js" %}"></script>
+    <script src="{% url 'profile:teacher_custom' user.teacher.id %}"></script>
+    <script src="{% static "js/bootstrap-tagsinput.js" %}"></script>
+
+
+</body>
+
+</html>

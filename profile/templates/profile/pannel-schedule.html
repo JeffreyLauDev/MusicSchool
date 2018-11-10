@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <script>
+            var lessonDate = "{{ lessons.0.class_time|date:"Y-m-d H:i:s" }}";
+
+            var lessonsNum = 1;
+            var lessonName = "pp";
+    </script>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/owl.carousel.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/owl.theme.default.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/particles.css" %}">
+    <link rel='stylesheet' href="{% static 'css/fullcalendar.css' %}"/>
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed:800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:200,300,400,600,700,800" rel="stylesheet">
+    <title>Music school</title>
+
+</head>
+
+<body class="pannel bg-grey">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white navbar-border">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'profile:index' %}">
+                <img src="{% static "/img/music-icon.png" %}" width="30" height="30" class="d-inline-block align-top" alt=""> Music School
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'profile:index' %}">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile:search' %}">Course
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item seperat-line pr-md-3 active">
+                            <a class="nav-link" href="{% url 'profile:schedule' %}">Schedule
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+
+
+                    <li class="nav-item dropdown pl-md-3">
+
+                        <a class="nav-link dropdown-toggle " href="./pannel-notification.html" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Personal
+                        </a>
+                        <div class="dropdown-menu profile-drop" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'profile:settings' %}">Setting</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'authentication:logout'%}">Log out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="bannner">
+            <div id="particles-js" class="hero bg-parallex overlay " style="height: 100%;background: url('{% static "/img/microphone-1209816_1280-green.jpg" %}');" >
+                <div class="middle-banner">
+                        <h2 class="display-5  font-weight-bold c-w">Student Schedule</h2>
+                </div>
+
+    </div>
+
+    <div class="nav-1 d-none">
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark container-2 mx-auto scroll-fix p-md-2 p-1" id="myHeader">
+            <form class="form-inline my-md-2 my-0 my-lg-0" style="width:  100%;">
+                <input class="form-control mr-sm-2 br-3px" style="width:  calc(100% - 37px);line-height: 1.5;" type="search" placeholder="Search"
+                    aria-label="Search">
+                <a href="">
+                    <i class="fa fa-search text-white ml-1  ml-2 ml-md-0 mr-2 border-radius" aria-hidden="true"></i>
+                </a>
+            </form>
+        </nav>
+
+    </div>
+
+    <section class="container-2 my-section-3 p-md-0  mt-3 z-07">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-9">
+
+                        <div id='studentSchedule' class="mt-md-4 mb-4"></div>
+                </div>
+            </div>
+
+    </section>
+
+    <div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="scheduleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header d-flex align-items-center">
+
+                            <h6 class="modal-title" id="eventTitle">Modal title</h6>
+
+
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="eventBody">
+                    <h5 id="eventTime"></h5>
+                    <p id="description"></p>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-info">ok</button>
+              <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel class</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="{% static "js/jquery.min.js" %}"></script>
+      <script src="{% static "js/popper.min.js" %}"></script>
+      <script src="{% static "js/bootstrap.min.js" %}"></script>
+      <script src="{% static "js/owl.carousel.min.js" %}"></script>
+      <script src="{% url 'profile:student_custom' user.student.id %}"></script>
+      <script src="{% static 'js/moment.js' %}"></script>
+      <script src="{% static 'js/fullcalendar.js' %}"></script>
+      <script src="{% static "js/particles.js" %}"></script>
+      <script src="{% static "js/app.js" %}"></script>
+      <script src="{% static "js/stats.js" %}"></script>
+      
+
+</body>
+
+</html>

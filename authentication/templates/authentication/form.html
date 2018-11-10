@@ -1,0 +1,47 @@
+   <div class="text-left">
+       <h1>{{title}}</h1>
+                <div class="alert alert-danger" role="alert">
+                    alert-danger! Something is wrong, applying class "d-none".
+                </div>
+                <div class="alert alert-success" role="alert">
+                    alert-success! Applying class "d-none".
+                </div>
+                <h3 class="font-weight-bold mb-4 text-left">Login</h3>
+                <h5 class="text-gray-soft text-regular mb-4">Please fill in your login details.</h5>
+                <hr>
+                <form>
+
+                    <div class="form-group">
+                        <label for="inputEmail">Email
+                            <span class="formRequired">*</span>
+                        </label>
+                        <input type="email" class="form-control" id="inputEmail4" placeholder="email@google.com" required>
+                    </div>
+                    <div class="form-group ">
+                        <label for="inputPassword">Password
+                            <span class="formRequired">*</span>
+                        </label>
+                        <input type="password" class="form-control" id="inputPassword4" placeholder="*********" required>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="signUpCheck" checked required>
+                            <label class="form-check-label form_agreement" for="signUpCheck">
+                                <h5 class="">Agree to share this information with MusicOnline
+                                    <span class="formRequired">*</span>
+                                </h5>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-info btn-large">Login</button>
+                    <hr>
+                    <h5>Dont have an account?
+                        <a href="/signup.html">Sign up</a> now!</h5>
+                </form>
+                <p> <a href="{% url 'profile:index' 1 %}">Assume login successful Go to pannel for !!!Student!!!</a></p>
+                <p> <a href="/pannel-home-staff.html">Assume login successful Go to pannel for !!!Staff!!!</a></p>
+                <p> <a href="/pannel-home.html">Assume login successful Go to pannel for !!!Admin!!!</a></p>
+            </div>

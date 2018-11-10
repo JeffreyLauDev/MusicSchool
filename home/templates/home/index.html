@@ -1,0 +1,77 @@
+<!-- {% load static %} -->
+<!DOCTYPE html>
+<html class="no-js full" lang="en">
+
+<head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/particles.css" %}">
+    
+    <link rel="stylesheet" href="{% static "css/owl.carousel.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/owl.theme.default.min.css" %}">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed:800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:200,300,400,600,700,800" rel="stylesheet">
+    <title>Music school</title>
+</head>
+
+<body class="full">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand"href="{% url 'home:home' %}">
+                <img src="{% static "/img/music-icon.png" %}" width="30" height="30" class="d-inline-block align-top" alt=""> Music School
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item seperat-line pr-md-3 active">
+                        <a class="nav-link" href="{% url 'home:home' %}">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link pl-md-4" href="{% url 'authentication:login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'authentication:signup' %}">Sign up</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+        <div id="particles-js" class="hero bg-parallex overlay " style="height: 100%;background: url('{% static "/img/microphone-1209816_1280-green.jpg" %}');" >
+        
+        </div>
+           
+        <div class="middle">
+            <h1 class="display-4 text-bold c-w m-0">Pineland Music School</h1>
+            <p class="text-gray-soft text-regular c-w o-8 f-15 ">Do you want to learn music?</p>
+            <a class="btn btn-info btn-lg c-w" href="{% url 'authentication:signup' %}">Join us now</a>
+        </div>
+        <div class="count-particles">
+          <span class="js-count-particles">--</span> particles
+        </div>
+
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/jquery.owl-filter.js" %}"></script>
+    <script src="{% static "js/popper.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/owl.carousel.min.js" %}"></script>
+    <script src="{% static "js/jquery.easeScroll.js" %}"></script>
+    <script src="{% static "js/particles.js" %}"></script>
+    <script src="{% static "js/app.js" %}"></script>
+    <script src="{% static "js/stats.js" %}"></script>
+
+
+</body>
+
+</html>
